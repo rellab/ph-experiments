@@ -1,0 +1,19 @@
+# ===== Dockerfile =====
+FROM rocker/r-ver:4.4.3
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN install2.r --error --skipinstalled matrixdist
+
+WORKDIR /work
+
+CMD ["R"]

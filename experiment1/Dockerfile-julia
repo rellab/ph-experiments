@@ -1,0 +1,46 @@
+# ===== Julia Dockerfile =====
+# Use the official Julia image
+FROM julia:1.10
+
+# Set locale
+ENV DEBIAN_FRONTEND=noninteractive \
+  LC_ALL=C.UTF-8 \
+  LANG=C.UTF-8
+
+# Install required system packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  git \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Julia packages
+# First install dependencies from GitHub sequentially
+RUN julia -e 'using Pkg; \
+        Pkg.add(PackageSpec(url="https://github.com/JuliaReliab/Origin.jl.git")); \
+        Pkg.add(PackageSpec(url="https://github.com/JuliaReliab/Deformula.jl.git")); \
+        Pkg.add(PackageSpec(url="https://github.com/JuliaReliab/SparseMatrix.jl.git")); \
+        Pkg.add(PackageSpec(url="https://github.com/JuliaReliab/NMarkov.jl.git")); \
+        Pkg.add("Printf"); \
+        Pkg.add("Distributions"); \
+        Pkg.precompile()'
+
+# Install PhaseTypeDistributions.jl
+RUN julia -e 'using Pkg; \
+        Pkg.add(PackageSpec(url="https://github.com/JuliaReliab/PhaseTypeDistributions.jl.git")); \
+        Pkg.precompile()'
+
+# Test that PhaseTypeDistributions.Phfit is available and works
+RUN julia -e 'try \
+        using PhaseTypeDistributions; \
+        using PhaseTypeDistributions.Phfit; \
+        println("PhaseTypeDistributions and Phfit modules loaded successfully"); \
+        catch e \
+        println("Error loading PhaseTypeDistributions modules: ", e); \
+        exit(1); \
+        end'
+
+# Set working directory
+WORKDIR /work
+
+# Make Julia the default executable
+CMD ["julia"]
