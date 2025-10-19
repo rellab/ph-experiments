@@ -22,11 +22,26 @@ yy = pdf.(dist, xx)
 yyaic = phpdf(phaic, xx)
 yyeic = phpdf(pheic, xx)
 yycross = phpdf(phcross, xx)
-plot(xx, yy, xlabel="t", ylabel="Probability density", lw=2, label="Original", ls=:solid)
-plot!(xx, yyaic, lw=2, label="AIC (m=5)", ls=:dash)
-plot!(xx, yyeic, lw=2, label="EIC (m=10)", ls=:dot)
-p = plot!(xx, yycross, lw=2, label="Cross (m=20)", ls=:dash)
-savefig(p, "resultslognormal-phfit.pdf")
+# plot(xx, yy, xlabel="t", ylabel="Probability density", lw=2, label="Original", ls=:solid)
+# plot!(xx, yyaic, lw=2, label="AIC (m=5)", ls=:dash)
+# plot!(xx, yyeic, lw=2, label="EIC (m=10)", ls=:dot)
+# p = plot!(xx, yycross, lw=2, label="Cross (m=20)", ls=:dash)
+plot(xx, yy, lw=2, color=:black, ls=:solid,
+     label="Original")
+
+plot!(xx, yyaic, lw=2, color=:red, ls=:dash,
+      label="AIC (m=5)")
+
+plot!(xx, yyeic, lw=2, color=:blue, ls=:dot,
+      label="EIC (m=10)")
+
+plot!(xx, yycross, lw=2, color=:green, ls=:dashdot,
+      label="Cross (m=20)")
+
+p = plot!(legend=:topright, grid=false,
+      xlabel="t", ylabel="Probability density",
+      background_color=:white, framestyle=:box)
+savefig(p, "results/lognormal-phfit.pdf")
 
 println("=================================================")
 println("Weibull distribution")
@@ -44,11 +59,22 @@ yy = pdf.(dist, xx)
 yyaic = phpdf(phaic, xx)
 yyeic = phpdf(pheic, xx)
 yycross = phpdf(phcross, xx)
-plot(xx, yy, xlabel="t", ylabel="Probability density", lw=2, label="Original", ls=:solid)
-plot!(xx, yyaic, lw=2, label="AIC (m=10)", ls=:dash)
-plot!(xx, yyeic, lw=2, label="EIC (m=30)", ls=:dot)
-p = plot!(xx, yycross, lw=2, label="Cross (m=50)", ls=:dash)
-savefig(p, "resultsweibull-phfit.pdf")
+plot(xx, yy, lw=2, color=:black, ls=:solid,
+     label="Original")
+
+plot!(xx, yyaic, lw=2, color=:red, ls=:dash,
+      label="AIC (m=10)")
+
+plot!(xx, yyeic, lw=2, color=:blue, ls=:dot,
+      label="EIC (m=30)")
+
+plot!(xx, yycross, lw=2, color=:green, ls=:dashdot,
+      label="Cross (m=50)")
+
+p = plot!(legend=:topright, grid=false,
+      xlabel="t", ylabel="Probability density",
+      background_color=:white, framestyle=:box)
+savefig(p, "results/weibull-phfit.pdf")
 
 println("=================================================")
 println("Mixture model")
@@ -69,9 +95,21 @@ yy = pdf.(dist, xx)
 yyaic = phpdf(phaic, xx)
 yyeic = phpdf(pheic, xx)
 yycross = phpdf(phcross, xx)
-plot(xx, yy, xlabel="t", ylabel="Probability density", lw=2, label="Original", ls=:solid)
-plot!(xx, yyaic, lw=2, label="AIC (m=10)", ls=:dash)
-plot!(xx, yyeic, lw=2, label="EIC (m=20)", ls=:dot)
-p = plot!(xx, yycross, lw=2, label="Cross (m=70)", ls=:dash)
+plot(xx, yy, lw=2, color=:black, ls=:solid,
+     label="Original")
+
+plot!(xx, yyaic, lw=2, color=:red, ls=:dash,
+      label="AIC (m=10)")
+
+plot!(xx, yyeic, lw=2, color=:blue, ls=:dot,
+      label="EIC (m=20)")
+
+plot!(xx, yycross, lw=2, color=:green, ls=:dashdot,
+      label="Cross (m=70)")
+
+p = plot!(legend=:topright, grid=false,
+      xlabel="t", ylabel="Probability density",
+      background_color=:white, framestyle=:box)
+
 savefig(p, "results/mixture-phfit.pdf")
 
