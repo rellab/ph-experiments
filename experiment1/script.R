@@ -4,15 +4,12 @@ library(matrixdist)
 # Read right-censored data
 read_rc_data <- function(path) {
   lines <- readLines(path, warn = FALSE)
-  if (any(grepl("^\\s*-?1\\s*$", lines))) {
-    lines <- lines[seq_len(which(grepl("^\\s*-?1\\s*$", lines))[1] - 1)]
-  }
   lines <- lines[!grepl("^\\s*$", lines)]
   df <- read.table(text = paste0(lines, collapse = "\n"),
-                   col.names = c("delta", "time"))
+                   col.names = c("time", "delta"))
   list(
-    y    = df$time[df$delta == 1],  # observed times
-    rcen = df$time[df$delta == 0]   # right-censored times
+    y    = df$time[df$delta == 1],  # 観測時刻
+    rcen = df$time[df$delta == 0]   # 検閲時刻
   )
 }
 

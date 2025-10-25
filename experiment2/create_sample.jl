@@ -1,15 +1,10 @@
 using PhaseTypeDistributions
 using PhaseTypeDistributions.Phfit
-# using CSV
-# using DataFrames
-# using Plots
 using Distributions
 using Random
 using Deformula
 using Test
 using Printf
-# using HDF5
-# using Logging
 
 function makeSample(rng, dist, trunc_prob, trunc_dist, censoring_dist)
     if trunc_prob > rand(rng, Float64)
@@ -24,22 +19,12 @@ function makeSample(rng, dist, trunc_prob, trunc_dist, censoring_dist)
         x = rand(rng, dist)
         nn += 1
         if nn > 10000
-            @warn("Fail to make sample1")
+            throw("Fail to make sample1 x: $(x), tau: $(tau)")
             return nothing
         end
     end
 
-    nn = 0
     y = rand(rng, censoring_dist)
-    while y < tau
-        y = rand(rng, censoring_dist)
-        nn += 1
-        if nn > 10000
-            @warn("Fail to make sample2")
-            return nothing
-        end
-    end
-
     if x < y
         (x, tau, true)
     else
@@ -51,53 +36,29 @@ function makeSample(rng, n, dist, trunc_prob, trunc_dist, censoring_dist)
     [makeSample(rng, dist, trunc_prob, trunc_dist, censoring_dist) for i = 1:n]
 end
 
-function lognormalSample(rng; mu=1.0, sig=0.5)
+function lognormalSample(rng; n, mu, sig, p, lambda1, lambda2)
     ## Log normal
     dist = LogNormal(mu, sig)
-    m1 = Distributions.mean(dist)
-    ires = deint(0.0, Inf64) do x
-        pdf(dist, x)
-    end
-    @test isapprox(m1, sum(@. ires.w * ires.x) * ires.h)
-    m2 = sum(@. ires.w * ires.x^2) * ires.h
-    m3 = sum(@. ires.w * ires.x^3) * ires.h
-    @printf("# (LogNormal(%.6f, %.6f)) moments: (m1,m2,m3) = (%.6f, %.6f, %.6f)\n", mu, sig, m1, m2, m3)
-
-    sample = makeSample(rng, 1000, dist, 0.3, Exponential(2.0), Exponential(5.0))
+    sample = makeSample(rng, n, dist, p, Exponential(lambda1), Exponential(lambda2))
+    # println("Generated samples: ", sample)
     (ntruncated, ncensored, nboth) = (sum([x[2] > 0.0 for x = sample]), sum(x[3] == 0 for x = sample), sum(x[2] > 0.0 && x[3] == 0 for x = sample))
     @printf("# Sample: N=%d (truncated=%d, censored=%d, both=%d)\n", length(sample), ntruncated, ncensored, nboth)
     sample
 end
 
-function weibullSample(rng; shape=5.0, scale=8.0)
+function weibullSample(rng; n, shape, scale, p, lambda1, lambda2)
     dist = Weibull(shape, scale)
-    m1 = Distributions.mean(dist)
-    ires = deint(0.0, Inf64) do x
-        pdf(dist, x)
-    end
-    @test isapprox(m1, sum(@. ires.w * ires.x) * ires.h)
-    m2 = sum(@. ires.w * ires.x^2) * ires.h
-    m3 = sum(@. ires.w * ires.x^3) * ires.h
-    println((m1, m2, m3))
-
-    sample = makeSample(rng, 1000, dist, 0.3, Exponential(2.0), Exponential(5.0))
+    sample = makeSample(rng, n, dist, p, Exponential(lambda1), Exponential(lambda2))
+    # println("Generated samples: ", sample)
     (ntruncated, ncensored, nboth) = (sum([x[2] > 0.0 for x = sample]), sum(x[3] == 0 for x = sample), sum(x[2] > 0.0 && x[3] == 0 for x = sample))
     @printf("Sample: N=%d (truncated=%d, censored=%d, both=%d)\n", length(sample), ntruncated, ncensored, nboth)
     sample
 end
 
-function mixturemodelSample(rng; mu=1.0, sig=0.5, shape=5.0, scale=8.0, p=0.3)
-    dist = MixtureModel([LogNormal(mu, sig), Weibull(shape, scale)], [p, 1-p])
-    m1 = Distributions.mean(dist)
-    ires = deint(0.0, Inf64) do x
-        pdf(dist, x)
-    end
-    @test isapprox(m1, sum(@. ires.w * ires.x) * ires.h)
-    m2 = sum(@. ires.w * ires.x^2) * ires.h
-    m3 = sum(@. ires.w * ires.x^3) * ires.h
-    println((m1, m2, m3))
-
-    sample = makeSample(rng, 1000, dist, 0.3, Exponential(2.0), Exponential(5.0))
+function mixturemodelSample(rng; n, mu, sig, shape, scale, mixturep, p, lambda1, lambda2)
+    dist = MixtureModel([LogNormal(mu, sig), Weibull(shape, scale)], [mixturep, 1-mixturep])
+    sample = makeSample(rng, n, dist, p, Exponential(lambda1), Exponential(lambda2))
+    # println("Generated samples: ", sample)
     (ntruncated, ncensored, nboth) = (sum([x[2] > 0.0 for x = sample]), sum(x[3] == 0 for x = sample), sum(x[2] > 0.0 && x[3] == 0 for x = sample))
     @printf("Sample: N=%d (truncated=%d, censored=%d, both=%d)\n", length(sample), ntruncated, ncensored, nboth)
     sample
@@ -110,49 +71,55 @@ function to_data(data)
     LeftTruncRightCensoredSample(t, tau, delta)
 end
 
+seed = 20220810
+nlist = [200, 1000]
+
 ### generate lognormal sample
 
-seed = 20220810
-rng = MersenneTwister(seed)
-
-sample = lognormalSample(rng, mu=1.0, sig=0.5)
-open("data/lognormal_sample.txt", "w") do f
-    for (t, tau, delta) in sample
-        @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+for n in nlist
+    rng = MersenneTwister(seed)
+    println("Generating lognormal sample n=$(n)")
+    sample = lognormalSample(rng, n=n, mu=1.0, sig=0.5, p=0.3, lambda1=1.0, lambda2=8.0)
+    open("data/lognormal_sample_$(n).txt", "w") do f
+        for (t, tau, delta) in sample
+            @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+        end
     end
+    ##### test phfitting
+    dat = to_data(sample)
+    phfit(CF1(3), dat, verbose = false)
 end
-dat = to_data(sample)
 
-##### test phfitting
-phfit(CF1(3), dat, verbose = false)
 
 ### generate weibull sample
 
-seed = 20220810
-rng = MersenneTwister(seed)
-
-sample = weibullSample(rng, shape=5.0, scale=8.0)
-open("data/weibull_sample.txt", "w") do f
-    for (t, tau, delta) in sample
-        @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+for n in nlist
+    rng = MersenneTwister(seed)
+    println("Generating weibull sample n=$(n)")
+    sample = weibullSample(rng, n=n, shape=5.0, scale=8.0, p=0.3, lambda1=1.0, lambda2=8.0)
+    open("data/weibull_sample_$(n).txt", "w") do f
+        for (t, tau, delta) in sample
+            @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+        end
     end
+    ##### test phfitting
+    dat = to_data(sample)
+    phfit(CF1(3), dat, verbose = false)
 end
-dat = to_data(sample)
-
-####### test phfitting
-phfit(CF1(3), dat, verbose = false)
 
 ### generate mixture model sample
-seed = 20220810
-rng = MersenneTwister(seed)
 
-sample = mixturemodelSample(rng, mu=1.0, sig=0.5, shape=5.0, scale=8.0, p=0.3)
-open("data/mixturemodel_sample.txt", "w") do f
-    for (t, tau, delta) in sample
-        @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+for n in nlist
+    rng = MersenneTwister(seed)
+    println("Generating mixture model sample n=$(n)")
+    sample = mixturemodelSample(rng, n=n, mu=1.0, sig=0.5, shape=5.0, scale=8.0, mixturep=0.3, p=0.3, lambda1=1.0, lambda2=8.0)
+    open("data/mixturemodel_sample_$(n).txt", "w") do f
+        for (t, tau, delta) in sample
+            @printf(f, "%.12f %.12f %d\n", t, tau, delta)
+        end
     end
+    ##### test phfitting
+    dat = to_data(sample)
+    phfit(CF1(3), dat, verbose = false)
 end
-dat = to_data(sample)
-####### test phfitting
-phfit(CF1(3), dat, verbose = false)
 

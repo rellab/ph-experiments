@@ -29,20 +29,22 @@ docker run --rm -v "$PWD":/work -w /work ph-julia julia create_sample.jl
 
 ```bash
 mkdir -p results
-docker run --rm -v "$PWD":/work -w /work ph-julia julia -t 4 experiment2-1.jl | tee log200.txt
-cat log200.txt | grep -v process | res200.txt
+caffeinate -i docker run --rm -v "$PWD":/work -w /work ph-julia julia -t 4 experiment2-1.jl 200 | tee eic200.txt
+caffeinate -i docker run --rm -v "$PWD":/work -w /work ph-julia julia -t 4 experiment2-1.jl 1000 | tee eic1000.txt
 ```
 
 4) Run the experiment to compute moments and cross entropy
 
 ```bash
-docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-2.jl | tee log_mom200.txt
+docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-2.jl 200 | tee mom200.txt
+docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-2.jl 1000 | tee mom1000.txt
 ```
 
 5) Run the script to draw plots
 
-- Modify the experiment2-3.jl script to indicate the selected models by AIC, EIC, and cross entropy.
+- Modify the experiment2-3_XXX.jl script to indicate the selected models by AIC, EIC, and cross entropy.
 
 ```bash
-docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-3.jl
+docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-3.jl 200 20 30 50 ...
+docker run --rm -v "$PWD":/work -w /work ph-julia julia experiment2-3.jl 1000 10 20 30 ...
 ```

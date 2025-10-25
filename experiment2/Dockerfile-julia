@@ -24,6 +24,7 @@ RUN julia -e 'using Pkg; \
         Pkg.add("Distributions"); \
         Pkg.add("Plots"); \
         Pkg.add("SpecialFunctions"); \
+        Pkg.add("ProgressMeter"); \
         Pkg.add("JLD2"); \
         Pkg.precompile()'
 

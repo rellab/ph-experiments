@@ -1,3 +1,5 @@
 PhaseTypeDistributions.jl
 matrixdist
 .DS_Store
+experiment1/Manifest.toml
+experiment1/Project.toml

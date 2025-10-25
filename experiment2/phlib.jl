@@ -57,6 +57,17 @@ function read_rc_data(path::AbstractString)
     # return dat
 end
 
+function calcllf(model, dat::WeightedSample)
+    result = 0.0
+    cumtime = 0.0
+    for i in 1:dat.length
+        cumtime += dat.tdat[i]
+        tmp = log(phpdf(model, cumtime))
+        result += tmp * dat.wdat[i]
+    end
+    return result
+end
+
 function calcllf(model, dat::LeftTruncRightCensoredSample)
     result = 0.0
     cumtime = 0.0
@@ -85,6 +96,11 @@ function bootstrap(rng, samples)
     b
 end
 
+function pbootstrap(rng, phmodel, samples)
+    n = length(samples)
+    phsample(rng, phmodel, n)    
+end
+
 function to_data(data)
     t = [x[1] for x = data]
     tau = [x[2] for x = data]
@@ -107,16 +123,17 @@ function cross(dist, ph)
     s * ires.h
 end
 
-function eic(rng, ph0, llf0, d0, data; bsample, maxiter, steps, reltol)
+function eic(rng, ph0, llf0, d0, data; bsample, maxiter, steps, abstol, reltol)
 #     b1 = Vector{Float64}(undef, bsample)
 #     b2 = Vector{Float64}(undef, bsample)
 #     b3 = Vector{Float64}(undef, bsample)
 #     b4 = Vector{Float64}(undef, bsample)
     bias = Vector{Union{Float64,Nothing}}(undef, bsample)
-    d1 = [to_data(bootstrap(rng, data)) for k = 1:bsample]
+#    d1 = [to_data(bootstrap(rng, data)) for k = 1:bsample]
+    d1 = [PointSample(pbootstrap(rng, ph0, data)) for k = 1:bsample]
     Threads.@threads for i = 1:bsample
         try
-            ph1, llf1, conv1, _ = phfit(ph0, d1[i]; initialize=false, maxiter=maxiter, steps=steps, reltol=reltol)
+            ph1, llf1, conv1, _ = phfit(ph0, d1[i]; initialize=false, maxiter=maxiter, steps=steps, abstol=abstol, reltol=reltol, progress=false)
             if conv1 == false
                 @warn("Did not convergence")
             end
@@ -124,8 +141,10 @@ function eic(rng, ph0, llf0, d0, data; bsample, maxiter, steps, reltol)
             b2 = calcllf(ph0, d1[i])
             b1 = llf1
             b4 = calcllf(ph1, d0)
-            bias[i] = b1 - b2 + b3 - b4
+            tmp = b1 - b2 + b3 - b4
+            bias[i] = tmp
         catch e
+            # @warn("Bootstrap sample $i failed: $e")
             bias[i] = nothing
         end
     end

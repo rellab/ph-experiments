@@ -1,0 +1,57 @@
+=================================================
+Lognormal distribution
+First three moments (original): 3.08021685, 12.18249396, 61.86780925
+First three moments (m=2): 3.11238561, 14.53041747, 90.44853396
+Cross-moment (m=2): 1.86381323
+First three moments (m=5): 3.09728083, 12.86252491, 69.87561363
+Cross-moment (m=5): 1.74581277
+First three moments (m=10): 3.10741184, 12.86831644, 69.67144010
+Cross-moment (m=10): 1.73498810
+First three moments (m=20): 3.10745978, 12.80960017, 68.10998626
+Cross-moment (m=20): 1.73722821
+First three moments (m=30): 3.10813086, 12.82998291, 68.40910407
+Cross-moment (m=30): 1.73993258
+First three moments (m=50): 3.10646694, 12.78120070, 67.51085620
+Cross-moment (m=50): 1.74931287
+First three moments (m=70): 3.10620678, 12.77478143, 67.35125636
+Cross-moment (m=70): 1.75495566
+First three moments (m=100): 3.10645183, 12.77933611, 67.37437430
+Cross-moment (m=100): 1.76509246
+=================================================
+Weibull distribution
+First three moments (original): 7.34534994, 56.78488432, 457.47985884
+First three moments (m=2): 9.09840064, 124.17134361, 2259.52131488
+Cross-moment (m=2): 2.68055060
+First three moments (m=5): 8.01891681, 77.16400081, 866.28688740
+Cross-moment (m=5): 2.26391171
+First three moments (m=10): 7.61837674, 63.84732855, 583.75477954
+Cross-moment (m=10): 2.04736598
+First three moments (m=20): 7.48408690, 59.71857541, 504.16366428
+Cross-moment (m=20): 1.96432975
+First three moments (m=30): 7.46671637, 59.12481767, 491.97981279
+Cross-moment (m=30): 1.95427354
+First three moments (m=50): 7.45446651, 58.72633208, 483.99757529
+Cross-moment (m=50): 1.94829954
+First three moments (m=70): 7.45638437, 58.74896380, 483.90800609
+Cross-moment (m=70): 1.94558711
+First three moments (m=100): 7.45860210, 58.79643044, 484.58858892
+Cross-moment (m=100): 1.95173211
+=================================================
+Mixture model
+First three moments (original): 6.06581001, 43.40416721, 338.79624396
+First three moments (m=2): 6.26894708, 58.94963801, 739.10576059
+Cross-moment (m=2): 2.54531734
+First three moments (m=5): 5.89111235, 44.34663976, 401.07282894
+Cross-moment (m=5): 2.41872302
+First three moments (m=10): 5.83387154, 42.01217953, 344.15704029
+Cross-moment (m=10): 2.32911200
+First three moments (m=20): 5.75765264, 39.57374625, 299.16286613
+Cross-moment (m=20): 2.29411923
+First three moments (m=30): 5.75535456, 39.47640853, 296.95383557
+Cross-moment (m=30): 2.28813291
+First three moments (m=50): 5.75667599, 39.44532885, 295.69692123
+Cross-moment (m=50): 2.28449469
+First three moments (m=70): 5.75686244, 39.43040799, 295.23944876
+Cross-moment (m=70): 2.28570945
+First three moments (m=100): 5.75736585, 39.44492323, 295.49112452
+Cross-moment (m=100): 2.28683547

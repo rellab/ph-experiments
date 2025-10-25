@@ -1,0 +1,187 @@
+[?25h[?25h[?25h[?25h[?25h[?25h[?25h[?25h[?25h[?25h[?25hRunning matrixdist for general PH and right_censored_sample_200; tolerance of UNI = 1.000000e-08
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase5_200.txt
+n=200 (events=126, r-censored=74)
+m=5
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08       0.122     -90.9892 0.0007539471
+        rerror    status total_steps
+1 8.286048e-06 Converged         230
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase10_200.txt
+n=200 (events=126, r-censored=74)
+m=10
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08       0.176    -90.98804 0.0009056541
+        rerror    status total_steps
+1 9.953452e-06 Converged         210
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase20_200.txt
+n=200 (events=126, r-censored=74)
+m=20
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08        1.95    -91.00333 0.0009684035
+        rerror    status total_steps
+1 1.064129e-05 Converged         500
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase30_200.txt
+n=200 (events=126, r-censored=74)
+m=30
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08      24.081    -90.80777 0.0009802736
+        rerror    status total_steps
+1 1.079493e-05 Converged        1970
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase50_200.txt
+n=200 (events=126, r-censored=74)
+m=50
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08      76.224    -90.91365 0.0009955808
+        rerror    status total_steps
+1 1.095072e-05 Converged        1050
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase70_200.txt
+n=200 (events=126, r-censored=74)
+m=70
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08     183.204    -90.82882 0.0009852613
+        rerror    status total_steps
+1 1.084733e-05 Converged        1280
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/general_phase100_200.txt
+n=200 (events=126, r-censored=74)
+m=100
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08     353.224    -90.87272 0.0009926643
+        rerror    status total_steps
+1 1.092356e-05 Converged        1080
+Done.
+Running matrixdist for bidiagonal PH and right_censored_sample_200; tolerance of UNI = 1.000000e-08
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase5_200.txt
+n=200 (events=126, r-censored=74)
+m=5
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08       0.151     -91.0167 0.0009983658
+        rerror    status total_steps
+1 1.096892e-05 Converged         330
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase10_200.txt
+n=200 (events=126, r-censored=74)
+m=10
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08       0.721    -90.93544 0.0009881741
+        rerror    status total_steps
+1 1.086665e-05 Converged         660
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase20_200.txt
+n=200 (events=126, r-censored=74)
+m=20
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08        1.74    -90.97762 0.0009910395
+       rerror    status total_steps
+1 1.08931e-05 Converged         400
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase30_200.txt
+n=200 (events=126, r-censored=74)
+m=30
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08       3.812    -90.99745 0.0009857692
+        rerror    status total_steps
+1 1.083281e-05 Converged         330
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase50_200.txt
+n=200 (events=126, r-censored=74)
+m=50
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08      23.344    -90.99248 0.0009897666
+        rerror    status total_steps
+1 1.087734e-05 Converged         400
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase70_200.txt
+n=200 (events=126, r-censored=74)
+m=70
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08      28.126    -90.98866 0.0009960187
+       rerror    status total_steps
+1 1.09465e-05 Converged         260
+Starting fit with parameters:
+  data_file: data/right_censored_sample_200.txt
+  phase_file: params/bidiagonal_phase100_200.txt
+n=200 (events=126, r-censored=74)
+m=100
+Using method: UNI
+UNI epsilon: 1.000000e-08
+
+Converged.
+  method steps reltol maxiter uni_epsilon elapsed_sec final_loglik       aerror
+1    UNI    10  1e-05    5000       1e-08    1322.548    -90.27155 0.0009882147
+        rerror    status total_steps
+1 1.094701e-05 Converged        3250
+Done.
+[?25h[?25h

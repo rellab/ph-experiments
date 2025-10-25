@@ -33,46 +33,31 @@ makeinit_bidiagonal_ph <- function(m, rc, output_file, seed = 1234) {
   write_alpha_S(result$fit_result, output_file)
 }
 
-# initial general PH parameters for unweighted100
-rc <- read_rc_data("data/unweighted100")
+# initial general PH parameters for right_censored_sample_200
+rc <- read_rc_data("data/right_censored_sample_200.txt")
 for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
-    output_file <- paste0("params/general_phase", m, "_100.txt")
+    output_file <- paste0("params/general_phase", m, "_200.txt")
     result <- makeinit_general_ph(m, rc, output_file)
 }
 
-# initial bidiagonal parameters for unweighted100
-rc <- read_rc_data("data/unweighted100")
+# initial bidiagonal parameters for right_censored_sample_200
+rc <- read_rc_data("data/right_censored_sample_200.txt")
 for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
-    output_file <- paste0("params/bidiagonal_phase", m, "_100.txt")
+    output_file <- paste0("params/bidiagonal_phase", m, "_200.txt")
     result <- makeinit_bidiagonal_ph(m, rc, output_file)
 }
 
-# initial general PH parameters for unweighted1000
-rc <- read_rc_data("data/unweighted1000")
+# initial general PH parameters for right_censored_sample_1000
+rc <- read_rc_data("data/right_censored_sample_1000.txt")
 for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
     output_file <- paste0("params/general_phase", m, "_1000.txt")
     result <- makeinit_general_ph(m, rc, output_file)
 }
 
-# initial bidiagonal parameters for unweighted1000
-rc <- read_rc_data("data/unweighted1000")
+# initial bidiagonal parameters for right_censored_sample_1000
+rc <- read_rc_data("data/right_censored_sample_1000.txt")
 for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
     output_file <- paste0("params/bidiagonal_phase", m, "_1000.txt")
     result <- makeinit_bidiagonal_ph(m, rc, output_file)
 }
-
-# initial general PH parameters for unweighted10000
-rc <- read_rc_data("data/unweighted10000")
-for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
-    output_file <- paste0("params/general_phase", m, "_10000.txt")
-    result <- makeinit_general_ph(m, rc, output_file)
-}
-
-# initial bidiagonal parameters for unweighted10000
-rc <- read_rc_data("data/unweighted10000")
-for (m in c(2, 5, 10, 20, 30, 50, 70, 100)) {
-    output_file <- paste0("params/bidiagonal_phase", m, "_10000.txt")
-    result <- makeinit_bidiagonal_ph(m, rc, output_file)
-}
-
 

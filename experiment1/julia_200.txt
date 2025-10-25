@@ -1,0 +1,222 @@
+Running proposed method for general PH; n=200
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase2_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=2 Status=Converged
+ elapsed=0.027079[s] final loglik=-95.529422 total_steps=110
+  aerror=6.572886e-04 rerror=6.880433e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase5_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=5 Status=Converged
+ elapsed=0.113858[s] final loglik=-91.003050 total_steps=330
+  aerror=9.997801e-04 rerror=1.098609e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase10_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=10 Status=Converged
+ elapsed=0.335649[s] final loglik=-91.000686 total_steps=320
+  aerror=9.617652e-04 rerror=1.056865e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase20_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=20 Status=Converged
+ elapsed=2.502803[s] final loglik=-91.023225 total_steps=530
+  aerror=9.758779e-04 rerror=1.072107e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase30_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=30 Status=Converged
+ elapsed=9.786510[s] final loglik=-91.008198 total_steps=840
+  aerror=9.920769e-04 rerror=1.090083e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase50_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=50 Status=Converged
+ elapsed=23.240412[s] final loglik=-91.028388 total_steps=600
+  aerror=9.961986e-04 rerror=1.094369e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase70_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=70 Status=Converged
+ elapsed=166.043969[s] final loglik=-90.864647 total_steps=1810
+  aerror=9.907788e-04 rerror=1.090377e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/general_phase100_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=100 Status=Converged
+ elapsed=375.946897[s] final loglik=-90.849273 total_steps=1660
+  aerror=9.971380e-04 rerror=1.097561e-05
+
+
+Done.
+Running proposed method for bidiagonal PH n=200
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase2_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=2 Status=Converged
+ elapsed=0.016002[s] final loglik=-95.528821 total_steps=90
+  aerror=4.643550e-04 rerror=4.860864e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase5_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=5 Status=Converged
+ elapsed=0.080587[s] final loglik=-91.035977 total_steps=320
+  aerror=8.839121e-04 rerror=9.709378e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase10_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=10 Status=Converged
+ elapsed=0.144815[s] final loglik=-91.036454 total_steps=360
+  aerror=9.527834e-04 rerror=1.046583e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase20_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=20 Status=Converged
+ elapsed=0.213145[s] final loglik=-91.007918 total_steps=340
+  aerror=9.511510e-04 rerror=1.045118e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase30_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=30 Status=Converged
+ elapsed=0.262593[s] final loglik=-91.013534 total_steps=300
+  aerror=9.866089e-04 rerror=1.084012e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase50_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=50 Status=Converged
+ elapsed=0.469089[s] final loglik=-91.018320 total_steps=350
+  aerror=9.341410e-04 rerror=1.026310e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase70_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=70 Status=Converged
+ elapsed=0.555400[s] final loglik=-90.997533 total_steps=290
+  aerror=9.481293e-04 rerror=1.041917e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase100_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=100 Status=Converged
+ elapsed=2.530869[s] final loglik=-90.988966 total_steps=950
+  aerror=9.830385e-04 rerror=1.080380e-05
+
+
+Done.
+Running proposed method for CF1 n=200
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase2_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=2 Status=Converged
+ elapsed=0.010066[s] final loglik=-95.528729 total_steps=50
+  aerror=5.439779e-04 rerror=5.694358e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase5_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=5 Status=Converged
+ elapsed=0.024590[s] final loglik=-90.971842 total_steps=90
+  aerror=8.561742e-04 rerror=9.411324e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase10_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=10 Status=Converged
+ elapsed=0.030896[s] final loglik=-90.972140 total_steps=80
+  aerror=6.889018e-04 rerror=7.572606e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase20_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=20 Status=Converged
+ elapsed=0.044208[s] final loglik=-90.972512 total_steps=70
+  aerror=8.451704e-04 rerror=9.290299e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase30_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=30 Status=Converged
+ elapsed=0.066530[s] final loglik=-90.972945 total_steps=70
+  aerror=9.950241e-04 rerror=1.093746e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase50_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=50 Status=Converged
+ elapsed=0.115059[s] final loglik=-90.973970 total_steps=80
+  aerror=5.786996e-04 rerror=6.361113e-06
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase70_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=70 Status=Converged
+ elapsed=24.135899[s] final loglik=-88.438223 total_steps=3720
+  aerror=9.996029e-04 rerror=1.130270e-05
+
+
+Starting run_fit with: data_file=data/right_censored_sample_200.txt init_file=params/bidiagonal_phase100_200.txt
+Loaded data: N=200 (events=126, right-censored=74)
+
+Converged.
+m=100 Status=Converged
+ elapsed=9.319569[s] final loglik=-87.906830 total_steps=2980
+  aerror=9.995148e-04 rerror=1.137002e-05
+
+
+Done.

@@ -1,6 +1,7 @@
 
 using PhaseTypeDistributions
 using PhaseTypeDistributions.Phfit
+using SparseMatrix
 using SparseArrays
 using Printf
 
@@ -30,14 +31,11 @@ function read_rc_data(path::AbstractString)
     open(path, "r") do f
         for x in eachline(f)
             x = strip(x)
-            if x == "-1" || x == "1"
-                break
-            end
             if !isempty(x)
                 a = split(x, " ")
                 if length(a) == 2
-                    delta = parse(Int, a[1])
-                    t = parse(Float64, a[2])
+                    t = parse(Float64, a[1])
+                    delta = parse(Int, a[2])
                     push!(data, (t, 0.0, delta))
                     if delta == 1
                         event_count += 1
@@ -139,7 +137,7 @@ function run_em_until(model, eres, dat::LeftTruncRightCensoredSample; steps::Int
     total_steps = 0
 
     ## run first EMsteps
-    for _ in 1:steps
+    for t in 1:steps
         current_llf = PhaseTypeDistributions.Phfit.estep!(model, dat, eres, eps=eps)
         PhaseTypeDistributions.Phfit.mstep!(model, eres)
     end
@@ -147,7 +145,7 @@ function run_em_until(model, eres, dat::LeftTruncRightCensoredSample; steps::Int
     while total_steps < maxsteps
         total_steps += steps
         prev_llf = current_llf
-        for _ in 1:steps
+        for t in 1:steps
             current_llf = PhaseTypeDistributions.Phfit.estep!(model, dat, eres, eps=eps)
             PhaseTypeDistributions.Phfit.mstep!(model, eres)
         end
@@ -188,7 +186,6 @@ function run_fit_cf1(data_file::AbstractString, init_file::AbstractString,
     println("Starting run_fit with:", " data_file=", data_file, " init_file=", init_file)
     dat = read_rc_data(data_file)
     model = read_alpha_Q(init_file)
-    eres = PhaseTypeDistributions.Phfit.Estep(model)
     m = length(model.alpha)
 
     rate = Vector{Float64}(undef, length(model.alpha))
@@ -196,11 +193,14 @@ function run_fit_cf1(data_file::AbstractString, init_file::AbstractString,
         rate[i] = -model.T[i,i]
     end
     cf1model = CF1(model.alpha, rate)
+    eres = PhaseTypeDistributions.Phfit.Estep(GPH(cf1model, SparseCSC))
+    # println(eres)
 
     t = @elapsed begin
         emresult = run_em_until(cf1model, eres, dat; steps=steps, maxsteps=maxsteps, abstol=abstol, reltol=reltol)
     end
-    llf = calcllf(emresult.ph, dat)
+    gph = GPH(emresult.ph, SparseCSC)
+    llf = calcllf(gph, dat)
     result = (status=emresult.status, m=m, t=t, llf=llf, aerror = emresult.aerror, rerror = emresult.rerror, total_steps=emresult.total_steps)
     @printf("m=%d Status=%s\n", m, emresult.status)
     @printf(" elapsed=%.6f[s] final loglik=%.6f total_steps=%d\n", t, llf, emresult.total_steps)
