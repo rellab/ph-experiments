@@ -9,23 +9,24 @@ Both variants iterate EM until convergence based on absolute/relative log‑like
 
 ## Directory layout
 
-- `experiment1_100.jl`, `experiment1_1000.jl` – Julia batch scripts for N=100 and N=1000 datasets
+- `experiment1.jl` – Julia scripts
 - `phlib.jl` – Julia helpers: data/param readers, EM loop with convergence checks
-- `experiment1_100.R`, `experiment1_1000.R` – R batch scripts for N=100 and N=1000
+- `experiment1.R` – R scripts
 - `script.R` – R helpers: data/param readers, wrappers around matrixdist::fit with convergence loop
+- `create_sample.jl` – Julia script to generate right-censored sample data under `data/`
 - `create_initph.R` – R script to generate initial PH parameter files under `params/`
 - `Dockerfile-julia` – Julia image with PhaseTypeDistributions
 - `Dockerfile-matrixdist` – R image with `matrixdist`
 - `data/` – input datasets (right‑censored): `unweighted100`, `unweighted1000`, …
 - `params/` – initial PH parameters for general/bidiagonal structures, various dimensions (m)
-- `results/` – reference spreadsheets from prior runs (not overwritten here)
-- `log_julia_*.txt`, `log_r_*.txt` – example logs from previous runs
+- `julia_200.txt`, `julia_1000.txt` – Julia experiment logs
+- `r_200.txt`, `r_1000.txt` – R experiment logs
 
 ## Quick start (Docker)
 
 Requirements:
 
-- Docker Desktop (macOS)
+- Docker Desktop (macOS, probably Windows and Linux run similarly)
 
 From this `experiment1/` directory:
 
