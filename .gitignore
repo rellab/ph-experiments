@@ -1,4 +1,6 @@
 PhaseTypeDistributions.jl
+NMarkov.jl
+SparseMatrix.jl
 matrixdist
 .DS_Store
 experiment1/Manifest.toml
