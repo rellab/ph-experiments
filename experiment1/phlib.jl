@@ -1,7 +1,7 @@
 
 using PhaseTypeDistributions
 using PhaseTypeDistributions.Phfit
-using SparseMatrix
+using NMarkov.SparseMatrix
 using SparseArrays
 using Printf
 

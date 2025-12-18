@@ -4,7 +4,7 @@ using PhaseTypeDistributions.Phfit
 using SparseArrays
 using Printf
 using Random
-using Deformula
+using DEQuadrature
 
 # ---------- I/O ----------
 function read_rc_data(path::AbstractString)
